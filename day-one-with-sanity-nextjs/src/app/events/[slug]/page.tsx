@@ -5,6 +5,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client, sanityFetch } from "@/sanity/client";
 import Link from "next/link";
 import Image from "next/image";
+import { cp } from "fs";
 
 const EVENT_QUERY = `*[
     _type == "event" &&
@@ -30,6 +31,7 @@ export default async function EventPage({
     query: EVENT_QUERY,
     params,
   });
+  // const greeting = event.greeting;
   const {
     name,
     date,
@@ -40,7 +42,9 @@ export default async function EventPage({
     doorsOpen,
     venue,
     tickets,
+    greeting
   } = event;
+
   const eventImageUrl = image
     ? urlFor(image)?.width(550).height(310).url()
     : null;
@@ -75,6 +79,7 @@ export default async function EventPage({
                 {name}
               </h1>
             ) : null}
+
             {headline?.name ? (
               <dl className="grid grid-cols-2 gap-1 text-sm font-medium sm:gap-2 lg:text-base">
                 <dd className="font-semibold">Artist</dd>
@@ -121,6 +126,18 @@ export default async function EventPage({
               Buy Tickets
             </a>
           )}
+          {greeting ? (
+          <div>
+            {greeting.map((greet: any) => (
+              <div key={greet.key}>
+                <h2 className="text-2xl font-bold tracking-tighter mb-8">
+                  {greet._key}
+                </h2>
+                <h3 className="text-1xl  tracking-tighter mb-8">{greet.value}</h3>
+              </div>
+            ))}
+          </div>
+          ) : (<h1 className="text-2xl font-bold tracking-tighter mb-8">There are no languages option</h1>)}
         </div>
       </div>
     </main>

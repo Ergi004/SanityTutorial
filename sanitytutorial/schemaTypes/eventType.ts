@@ -1,6 +1,8 @@
 import {defineField, defineType, isTitledListValue} from 'sanity'
 import {CalendarIcon} from '@sanity/icons'
 import {DoorsOpenInput} from './DoorsOpenInput'
+
+
 export const eventType = defineType({
   name: 'event',
   title: 'Event',
@@ -83,6 +85,10 @@ export const eventType = defineType({
       type: 'url',
       group: 'details',
     }),
+    defineField({
+      name: 'greeting',
+      type: 'internationalizedArrayString'
+    })
   ],
   preview: {
     select: {
@@ -91,4 +97,5 @@ export const eventType = defineType({
       media: 'image',
     },
   },
+  
 })

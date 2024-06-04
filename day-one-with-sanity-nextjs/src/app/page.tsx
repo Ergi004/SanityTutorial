@@ -25,7 +25,7 @@ export default async function Home() {
             margin: "10px 10px",
             borderBottom: "1px black solid",
             padding: "10px",
-            fontWeight: 'bold'
+            fontWeight: "bold",
           }}
         >
           Events
